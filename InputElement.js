@@ -783,7 +783,7 @@ var InputElement = React.createClass({
         }
     },
     render: function() {
-        var { mask, alwaysShowMask, maskChar, formatChars, ...props } = this.props;
+        var { mask, alwaysShowMask, maskChar, formatChars, element: Element, ...props } = this.props;
         if (this.mask) {
             var handlersKeys = ["onFocus", "onBlur", "onChange", "onKeyDown", "onKeyPress", "onPaste"];
             handlersKeys.forEach((key) => {
@@ -794,7 +794,10 @@ var InputElement = React.createClass({
                 props.value = this.state.value;
             }
         }
-        return <input ref="input" {...props}/>;
+        if (!Element) {
+            Element = 'input';
+        }
+        return <Element ref="input" {...props} />;
     }
 });
 
